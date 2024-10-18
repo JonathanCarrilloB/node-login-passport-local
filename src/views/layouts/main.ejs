@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Establece la codificación de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Hace que la página sea responsive -->
+    <title>Desarrollo de Sistema de Login</title> <!-- Título de la página -->
+    <!-- Enlaza el CSS de Bootstrap desde un CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/solar/bootstrap.min.css" integrity="sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Desarrollo de Sistema de Login</a> <!-- Nombre del sistema -->
+          <!-- Botón para mostrar/ocultar el menú en dispositivos móviles -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto"> <!-- Lista de navegación -->
+                <% if (user) { %> <!-- Verifica si hay un usuario autenticado -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Perfil</a> <!-- Enlace al perfil del usuario -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Salir</a> <!-- Enlace para cerrar sesión -->
+                    </li>
+                <% } else { %> <!-- Si no hay usuario autenticado -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signin">Iniciar sesión</a> <!-- Enlace para iniciar sesión -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">Regístrate</a> <!-- Enlace para registrarse -->
+                    </li>
+                <% } %>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="container"> <!-- Contenedor principal -->
+        <!-- Muestra mensajes de error durante el registro -->
+        <% if (signupMessage.length > 0) { %>
+            <div class="alert alert-danger"><%= signupMessage %></div> <!-- Mensaje de error para registro -->
+        <% } %>
+    
+        <!-- Muestra mensajes de error durante el inicio de sesión -->
+        <% if (signinMessage.length > 0) { %>
+            <div class="alert alert-danger"><%= signinMessage %></div> <!-- Mensaje de error para inicio de sesión -->
+        <% } %>
+    
+        <%- body %> <!-- Aquí se insertará el contenido dinámico de la página -->
+    </div>
+    
+</body>
+</html>
